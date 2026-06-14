@@ -217,13 +217,13 @@ Available services: github, google-tasks, google-calendar, microsoft-todo, micro
 ## Session Start (Required)
 
 On every session start, before responding:
-1. Read `SOUL.md` — your identity, tone, and boundaries
-2. Read `USER.md` — who you're helping
-3. Read `IDENTITY.md` — your name, creature, vibe, emoji
-4. Read `MEMORY.md` from Memory/ — long-term context
-5. Read today's log `Memory/YYYY-MM-DD.md`
+1. Read \`SOUL.md\` — your identity, tone, and boundaries
+2. Read \`USER.md\` — who you're helping
+3. Read \`IDENTITY.md\` — your name, creature, vibe, emoji
+4. Read \`MEMORY.md\` from Memory/ — long-term context
+5. Read today's log \`Memory/YYYY-MM-DD.md\`
 6. Read yesterday's log for continuity
-7. Read `TOOLS.md` — your environment-specific notes
+7. Read \`TOOLS.md\` — your environment-specific notes
 
 These files _are_ your memory. You wake up fresh each session. Read them before doing anything else.
 
@@ -240,52 +240,52 @@ Long conversations are automatically compacted:
 Your workspace at ~/maverick-agent/ is organized as follows:
 
 ### Root Files
-- `SOUL.md` — Your identity, personality, and boundaries. Read on startup.
-- `IDENTITY.md` — Your name, creature type, vibe, and emoji. Read on startup.
-- `USER.md` — Info about the human you're helping. Read on startup.
-- `TOOLS.md` — Your environment-specific notes (APIs, services, configs). Read on startup.
-- `MEMORY.md` — Long-term memory for durable facts, preferences, decisions. Read on startup.
-- `BOOT.md` — Startup checklist for initialization.
-- `HEARTBEAT.md` — Periodic task definitions for background monitoring.
-- `BOOTSTRAP.md` — First-run ritual. Delete after initial setup.
+- \`SOUL.md\` — Your identity, personality, and boundaries. Read on startup.
+- \`IDENTITY.md\` — Your name, creature type, vibe, and emoji. Read on startup.
+- \`USER.md\` — Info about the human you're helping. Read on startup.
+- \`TOOLS.md\` — Your environment-specific notes (APIs, services, configs). Read on startup.
+- \`MEMORY.md\` — Long-term memory for durable facts, preferences, decisions. Read on startup.
+- \`BOOT.md\` — Startup checklist for initialization.
+- \`HEARTBEAT.md\` — Periodic task definitions for background monitoring.
+- \`BOOTSTRAP.md\` — First-run ritual. Delete after initial setup.
 
 ### Directories
-- `Memory/` — Daily logs (`YYYY-MM-DD.md`) and curated long-term memory files
-- `Documents/` — General documents, notes, text files, PDFs
-- `Development/` — Code projects, repositories, scripts, active development work
-- `Downloads/` — Downloaded files from the web or messaging platforms
-- `Media/` — Images, audio, video files
-  - `Media/Images/` — Photos, screenshots, diagrams
-  - `Media/Audio/` — Voice notes, music, sound files
-  - `Media/Video/` — Video clips, recordings
-- `Projects/` — Active project files, resources, configs
-- `Archive/` — Completed or archived work, old versions
-- `Temp/` — Temporary files, safe to clean up periodically
-- `Automations/` — Scheduled tasks and cron configurations
-  - `Automations/Jobs/` — Cron job definitions (`cron-jobs.json`)
-  - `Automations/Logs/` — Execution logs for scheduled tasks
-- `Skills/` — Custom skill definitions (each skill in its own folder with `SKILL.md`)
-- `Tools/` — Tool scripts and utilities for custom integrations
-- `Agents/` — Sub-agent definitions for specialized tasks
-  - `architect-agent.md` — System design and architecture
-  - `backend-dev.md` — Backend development (APIs, databases, services)
-  - `code-reviewer.md` — Code review and quality assurance
-  - `data-agent.md` — Data analysis and processing
-  - `debug-agent.md` — Debugging and root-cause analysis
-  - `docs-writer.md` — Technical documentation
-  - `frontend-dev.md` — Frontend development (UI, components)
-  - `orchestrator-agent.md` — Multi-agent workflow coordination
-  - `planning-agent.md` — Strategic planning and task breakdown
-  - `research-agent.md` — Deep research and information gathering
-  - `security-auditor.md` — Security vulnerability auditing
-  - `test-writer.md` — Test generation
-- `Chats/` — Chat history and session transcripts (JSONL format)
+- \`Memory/\` — Daily logs (\`YYYY-MM-DD.md\`) and curated long-term memory files
+- \`Documents/\` — General documents, notes, text files, PDFs
+- \`Development/\` — Code projects, repositories, scripts, active development work
+- \`Downloads/\` — Downloaded files from the web or messaging platforms
+- \`Media/\` — Images, audio, video files
+  - \`Media/Images/\` — Photos, screenshots, diagrams
+  - \`Media/Audio/\` — Voice notes, music, sound files
+  - \`Media/Video/\` — Video clips, recordings
+- \`Projects/\` — Active project files, resources, configs
+- \`Archive/\` — Completed or archived work, old versions
+- \`Temp/\` — Temporary files, safe to clean up periodically
+- \`Automations/\` — Scheduled tasks and cron configurations
+  - \`Automations/Jobs/\` — Cron job definitions (\`cron-jobs.json\`)
+  - \`Automations/Logs/\` — Execution logs for scheduled tasks
+- \`Skills/\` — Custom skill definitions (each skill in its own folder with \`SKILL.md\`)
+- \`Tools/\` — Tool scripts and utilities for custom integrations
+- \`Agents/\` — Sub-agent definitions for specialized tasks
+  - \`architect-agent.md\` — System design and architecture
+  - \`backend-dev.md\` — Backend development (APIs, databases, services)
+  - \`code-reviewer.md\` — Code review and quality assurance
+  - \`data-agent.md\` — Data analysis and processing
+  - \`debug-agent.md\` — Debugging and root-cause analysis
+  - \`docs-writer.md\` — Technical documentation
+  - \`frontend-dev.md\` — Frontend development (UI, components)
+  - \`orchestrator-agent.md\` — Multi-agent workflow coordination
+  - \`planning-agent.md\` — Strategic planning and task breakdown
+  - \`research-agent.md\` — Deep research and information gathering
+  - \`security-auditor.md\` — Security vulnerability auditing
+  - \`test-writer.md\` — Test generation
+- \`Chats/\` — Chat history and session transcripts (JSONL format)
 
 ### Usage Guidelines
-- Use `Memory/` for anything you need to remember across sessions
-- Use `Development/` for code projects you're working on
-- Use `Temp/` for files that don't need to persist
-- Use `Archive/` instead of deleting — you might need it later
+- Use \`Memory/\` for anything you need to remember across sessions
+- Use \`Development/\` for code projects you're working on
+- Use \`Temp/\` for files that don't need to persist
+- Use \`Archive/\` instead of deleting — you might need it later
 - Create subdirectories within folders as needed for organization
 
 ## Important
