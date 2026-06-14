@@ -25,7 +25,7 @@
 
 Maverick Agent is a Node.js AI assistant that lives on your messaging platforms. Send a message on WhatsApp, Telegram, or iMessage and get intelligent responses with full tool access, persistent memory, scheduled reminders, and integrations with GitHub, Vercel, Supabase, Google Tasks/Calendar, and more.
 
-**Use any model you want.** Claude Agent SDK or Opencode — switch with one config change, no lock-in.
+**Use any model you want.** [Claude Agent SDK](https://platform.claude.com/docs/en/agent-sdk/overview) or [Opencode](https://opencode.ai) — switch with one config change, no lock-in.
 
 **Lives where you do.** WhatsApp, Telegram, iMessage, and the terminal — all from a single gateway process.
 
