@@ -481,7 +481,8 @@ export default class ClaudeAgent extends EventEmitter {
         'mcp__supabase__list_storage_files',
         'mcp__supabase__upload_file',
         'mcp__supabase__get_table_schema'
-    ] : []
+      ]
+    }
 
     // Search tools
     this.searchTools = this.searchMcpServer ? [
@@ -489,8 +490,10 @@ export default class ClaudeAgent extends EventEmitter {
       'mcp__search__news_search',
       'mcp__search__image_search',
       'mcp__search__video_search'
-    ],
-    'google-calendar': [
+    ] : []
+
+    // Add remaining service tools
+    this.serviceToolDefs['google-calendar'] = [
       'mcp__calendar__list_calendars',
       'mcp__calendar__get_calendar',
       'mcp__calendar__list_events',
@@ -502,8 +505,9 @@ export default class ClaudeAgent extends EventEmitter {
       'mcp__calendar__get_upcoming_events',
       'mcp__calendar__quick_add_event',
       'mcp__calendar__list_event_colors'
-    ],
-    'microsoft-calendar': [
+    ]
+
+    this.serviceToolDefs['microsoft-calendar'] = [
       'mcp__microsoft-calendar__list_calendars',
       'mcp__microsoft-calendar__get_calendar',
       'mcp__microsoft-calendar__list_events',
@@ -513,8 +517,9 @@ export default class ClaudeAgent extends EventEmitter {
       'mcp__microsoft-calendar__delete_event',
       'mcp__microsoft-calendar__get_todays_events',
       'mcp__microsoft-calendar__get_upcoming_events'
-    ],
-    docker: [
+    ]
+
+    this.serviceToolDefs['docker'] = [
       'mcp__docker__list_containers',
       'mcp__docker__get_container',
       'mcp__docker__start_container',
@@ -530,15 +535,15 @@ export default class ClaudeAgent extends EventEmitter {
       'mcp__docker__compose_down',
       'mcp__docker__compose_logs',
       'mcp__docker__system_info'
-    ],
-    media: [
+    ]
+
+    this.serviceToolDefs['media'] = [
       'mcp__media__generate_image',
       'mcp__media__list_image_models',
       'mcp__media__generate_video',
       'mcp__media__list_video_models',
       'mcp__media__upscale'
     ]
-    }
 
     // System tools (base - always loaded)
     this.systemTools = this.systemMcpServer ? [
