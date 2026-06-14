@@ -5,16 +5,19 @@
 
 <p align="center">
   <a href="https://github.com/Justmalhar/maverick-agent/blob/main/LICENSE">
-    <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License: MIT">
+    <img src="https://shieldcn.dev/badge/License-MIT-green.svg?logo=mit&variant=branded" alt="License: MIT">
   </a>
   <a href="https://platform.claude.com/docs/en/agent-sdk/overview">
-    <img src="https://img.shields.io/badge/Claude-Agent%20SDK-blue?style=for-the-badge" alt="Claude Agent SDK">
+    <img src="https://shieldcn.dev/badge/Claude-Agent%20SDK-6B46C1.svg?logo=anthropic&variant=branded" alt="Claude Agent SDK">
   </a>
   <a href="https://opencode.ai">
-    <img src="https://img.shields.io/badge/Opencode-Supported-orange?style=for-the-badge" alt="Opencode">
+    <img src="https://shieldcn.dev/badge/Opencode-Supported-F97316.svg?logo=opencode&variant=branded" alt="Opencode">
+  </a>
+  <a href="https://github.com/Justmalhar/maverick-agent/stargazers">
+    <img src="https://shieldcn.dev/github/stars/Justmalhar/maverick-agent.svg?variant=branded" alt="GitHub Stars">
   </a>
   <a href="https://github.com/Justmalhar/maverick-agent">
-    <img src="https://img.shields.io/badge/PRs-Welcome-brightgreen?style=for-the-badge" alt="PRs Welcome">
+    <img src="https://shieldcn.dev/badge/PRs-Welcome-brightgreen.svg?variant=branded" alt="PRs Welcome">
   </a>
 </p>
 
