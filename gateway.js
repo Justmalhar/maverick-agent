@@ -9,7 +9,7 @@ import TelegramAdapter from './adapters/telegram.js'
 import SessionManager from './sessions/manager.js'
 import AgentRunner from './agent/runner.js'
 import CommandHandler from './commands/handler.js'
-import { transcribeAudio, isTranscriptionAvailable } from './tools/transcription.js'
+import { transcribeAudio, isTranscriptionAvailable } from './tools/base/transcription.js'
 
 /**
  * Maverick Agent Gateway - Routes messages between messaging platforms and Claude agent
