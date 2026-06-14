@@ -30,41 +30,9 @@ Maverick Agent is a Node.js AI assistant that lives on your messaging platforms.
 
 **Scheduled automations.** Natural language cron jobs — daily standups, weekly reports, one-time reminders.
 
-**Deep integrations.** GitHub repos/PRs/issues, Google Tasks & Calendar, Vercel deploys, Supabase queries, Brave Search, Docker management.
+**Deep integrations.** [GitHub](#github) repos/PRs/issues, [Google Tasks](#google-tasks) & [Calendar](#google-calendar), [Vercel](#vercel) deploys, [Supabase](#supabase) queries, [Brave Search](#brave-search), [Docker](#docker) management.
 
 **15+ built-in tools.** File operations, web search, code execution, voice (TTS/STT), system monitoring, and more.
-
----
-
-## Table of Contents
-
-- [Quick Install](#quick-install)
-- [Getting Started](#getting-started)
-- [Providers](#providers)
-- [CLI vs Messaging](#cli-vs-messaging)
-- [Configuration](#configuration)
-- [Messaging Platforms](#messaging-platforms)
-- [Memory System](#memory-system)
-- [Scheduling and Reminders](#scheduling-and-reminders)
-- [Integrations](#integrations)
-  - [GitHub](#github)
-  - [Google Tasks](#google-tasks)
-  - [Google Calendar](#google-calendar)
-  - [Microsoft To Do](#microsoft-to-do)
-  - [Microsoft Outlook Calendar](#microsoft-outlook-calendar)
-  - [Vercel](#vercel)
-  - [Supabase](#supabase)
-  - [Brave Search](#brave-search)
-  - [Docker](#docker)
-  - [System Monitor](#system-monitor)
-  - [Voice (TTS/STT)](#voice-ttsstt)
-- [Commands](#commands)
-- [Documentation](#documentation)
-- [Troubleshooting](#troubleshooting)
-- [Directory Structure](#directory-structure)
-- [Contributing](#contributing)
-- [Community](#community)
-- [License](#license)
 
 ---
 
