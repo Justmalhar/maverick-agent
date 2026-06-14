@@ -1,72 +1,75 @@
 <p align="center">
   <h1 align="center">Maverick Agent</h1>
+  <p align="center">Your personal 24x7 AI assistant on WhatsApp, Telegram, iMessage, and the terminal.</p>
 </p>
 
 <p align="center">
+  <a href="https://github.com/Justmalhar/maverick-agent/blob/main/LICENSE">
+    <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License: MIT">
+  </a>
   <a href="https://platform.claude.com/docs/en/agent-sdk/overview">
-    <img src="https://img.shields.io/badge/Claude-Agent%20SDK-blue" alt="Claude Agent SDK">
+    <img src="https://img.shields.io/badge/Claude-Agent%20SDK-blue?style=for-the-badge" alt="Claude Agent SDK">
   </a>
-  <a href="https://github.com/anthropics/claude-code">
-    <img src="https://img.shields.io/badge/Powered%20by-Claude%20Code-purple" alt="Claude Code">
+  <a href="https://opencode.ai">
+    <img src="https://img.shields.io/badge/Opencode-Supported-orange?style=for-the-badge" alt="Opencode">
+  </a>
+  <a href="https://github.com/Justmalhar/maverick-agent">
+    <img src="https://img.shields.io/badge/PRs-Welcome-brightgreen?style=for-the-badge" alt="PRs Welcome">
   </a>
 </p>
 
-<p align="center">
-  A personal 24x7 AI assistant that runs on your messaging platforms. Send a message on WhatsApp, Telegram, or iMessage and get responses from Claude with full tool access, persistent memory, scheduled reminders, and integrations with GitHub, Vercel, Supabase, Google Tasks/Calendar, and more.
-</p>
+---
+
+Maverick Agent is a Node.js AI assistant that lives on your messaging platforms. Send a message on WhatsApp, Telegram, or iMessage and get intelligent responses with full tool access, persistent memory, scheduled reminders, and integrations with GitHub, Vercel, Supabase, Google Tasks/Calendar, and more.
+
+**Use any model you want.** Claude Agent SDK or Opencode — switch with one config change, no lock-in.
+
+**Lives where you do.** WhatsApp, Telegram, iMessage, and the terminal — all from a single gateway process.
+
+**Persistent memory.** Remembers your preferences, people, and decisions across sessions.
+
+**Scheduled automations.** Natural language cron jobs — daily standups, weekly reports, one-time reminders.
+
+**Deep integrations.** GitHub repos/PRs/issues, Google Tasks & Calendar, Vercel deploys, Supabase queries, Brave Search, Docker management.
+
+**15+ built-in tools.** File operations, web search, code execution, voice (TTS/STT), system monitoring, and more.
 
 ---
 
 ## Table of Contents
 
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Quick Start](#quick-start)
-- [Deploying Remotely](#deploying-remotely)
+- [Quick Install](#quick-install)
+- [Getting Started](#getting-started)
 - [Providers](#providers)
+- [CLI vs Messaging](#cli-vs-messaging)
 - [Configuration](#configuration)
 - [Messaging Platforms](#messaging-platforms)
-- [Tool Approvals](#tool-approvals)
 - [Memory System](#memory-system)
 - [Scheduling and Reminders](#scheduling-and-reminders)
 - [Integrations](#integrations)
 - [Commands](#commands)
+- [Documentation](#documentation)
 - [Troubleshooting](#troubleshooting)
 - [Directory Structure](#directory-structure)
 - [Contributing](#contributing)
+- [Community](#community)
+- [License](#license)
 
 ---
 
-## Requirements
+## Quick Install
 
-- Node.js 18+
-- macOS, Linux, or Windows
-- Anthropic API key (`ANTHROPIC_API_KEY`)
-- **Claude Code** — required if using the Claude provider
-- **Opencode** — required if using the Opencode provider
-
-Platform-specific:
-- WhatsApp: a phone with WhatsApp installed
-- Telegram: a bot token from @BotFather
-- iMessage: macOS only, requires the `imsg` CLI tool
-
----
-
-## Installation
-
-### Quick Install (recommended)
-
-Get Maverick Agent running in under two minutes:
+Get Maverick Agent running in under two minutes.
 
 **Linux / macOS / WSL2:**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/justmalhar/maverick-agent/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Justmalhar/maverick-agent/main/install.sh | bash
 ```
 
-The installer handles everything — Git, Node.js, Claude Code, dependencies, the `maverick` command, and interactive API key setup.
-
 **Windows (native):** Use WSL2, then run the command above inside WSL.
+
+The installer handles everything — Git, Node.js, Claude Code, dependencies, the `maverick` command, and interactive API key setup.
 
 **Options:**
 
@@ -76,141 +79,61 @@ curl -fsSL ... | bash -s -- --dir /opt/mav   # custom install directory
 curl -fsSL ... | bash -s -- --branch dev     # install a specific branch
 ```
 
-**After installation:**
+After installation:
 
 ```bash
 source ~/.zshrc   # or: source ~/.bashrc
 maverick          # Open interactive menu
 ```
 
-To reconfigure later:
-
-```bash
-maverick setup    # Re-run setup wizard
-maverick config   # Show current config
-maverick start    # Start messaging gateway
-```
-
 ---
 
-### Manual Installation
-
-#### 1. Clone and install dependencies
+## Getting Started
 
 ```bash
-git clone <repo-url> maverick-agent
-cd maverick-agent
-npm install
-```
-
-#### 2. Install a provider
-
-You need at least one AI provider installed on the machine.
-
-**Claude Code** (for the Claude provider):
-
-```bash
-npm install -g @anthropic-ai/claude-code
-```
-
-**Opencode** (for the Opencode provider):
-
-```bash
-curl -fsSL https://opencode.ai/install | bash
-```
-
-You can install both. The CLI lets you switch between them.
-
-After installing Claude Code, authenticate it locally:
-
-```bash
-claude
-# Follow the OAuth prompts to log in with your Anthropic account
-```
-
-On remote/Docker deployments, authentication is handled by the `ANTHROPIC_API_KEY` environment variable instead — no interactive login needed.
-
-#### 3. API keys
-
-**Anthropic** — get your key from https://console.anthropic.com/
-
-```bash
-export ANTHROPIC_API_KEY=sk-ant-...
-```
-
-Add all exports to your shell profile (`~/.zshrc` or `~/.bashrc`) to make them permanent.
-
-### Install Layout
-
-The installer puts files in these locations:
-
-| What | Where |
-|------|-------|
-| Code | `~/.maverick/maverick-agent/` |
-| Config & API keys | `~/.maverick/.env` |
-| Memory files | `~/.maverick/Memory/` |
-| CLI command | `~/.local/bin/maverick` (symlink) |
-
-Set `MAVERICK_HOME` to change the data directory:
-
-```bash
-MAVERICK_HOME=/opt/maverick curl -fsSL ... | bash
-```
-
-### Docker Installation
-
-For remote/server deployment:
-
-```bash
-cp .env.example .env
-# Edit .env with your API keys
-docker compose up -d --build
-```
-
----
-
-## Quick Start
-
-```bash
-node cli.js
-```
-
-This opens the interactive menu:
-
-```
-1) Terminal chat      — talk to the assistant in your terminal
-2) Start gateway      — run the messaging gateway
-3) Setup adapters     — configure WhatsApp, Telegram, etc.
-4) Show current config
-5) Test connection
-6) Change provider
-7) Exit
-```
-
-Or run directly:
-
-```bash
-node cli.js chat     # terminal chat
-node cli.js start    # start the gateway
+maverick              # Interactive menu
+maverick chat         # Terminal chat — talk directly
+maverick start        # Start the messaging gateway
+maverick setup        # Re-run the setup wizard
+maverick config       # Show current config
 ```
 
 ---
 
 ## Providers
 
-Maverick Agent supports two AI providers:
+Maverick Agent supports two AI providers — use whichever fits your workflow.
 
-**Claude Agent SDK** — Anthropic's SDK. Uses your `ANTHROPIC_API_KEY`. Requires Claude Code installed. Models: Opus 4.6, Sonnet 4.5, Haiku 4.5.
+**Claude Agent SDK** — Anthropic's SDK. Models: Opus 4.6, Sonnet 4.5, Haiku 4.5. Requires `ANTHROPIC_API_KEY` and Claude Code CLI.
 
-**Opencode** — open-source alternative. Requires Opencode installed. Runs a local server or connects to an existing one. Models: GPT-5 Nano, Big Pickle, GLM-4.7, Grok Code, MiniMax M2.1.
+**Opencode** — Open-source alternative. Models: GPT-5 Nano, Big Pickle, GLM-4.7, Grok Code, MiniMax M2.1. Requires Opencode CLI.
 
-Switch providers from the CLI menu (option 7) or in `config.js`:
+Switch providers from the CLI menu or in `config.js`:
 
 ```javascript
 agent: {
   provider: 'claude',    // or 'opencode'
 }
 ```
+
+No code changes needed — the provider interface is abstracted.
+
+---
+
+## CLI vs Messaging
+
+Maverick has two entry points: the terminal CLI (`maverick chat`) or the messaging gateway (WhatsApp, Telegram, iMessage). Many slash commands work in both.
+
+| Action | CLI | Messaging Platforms |
+|--------|-----|---------------------|
+| Start chatting | `maverick chat` | Send a message to your bot |
+| Start fresh | `/new` or `/reset` | `/new` or `/reset` |
+| Switch model | `/model` | `/model` |
+| View memory | `/memory` | `/memory` |
+| Search memory | `/memory search <q>` | `/memory search <q>` |
+| Stop current work | `Ctrl+C` | `/stop` |
+| Queue status | `/queue` | `/queue` |
+| Show help | `/help` | `/help` |
 
 ---
 
@@ -230,12 +153,7 @@ All settings live in `config.js`. Edit directly or use the setup wizard.
     workspace: '~/maverick-agent',
     maxTurns: 100,
     allowedTools: ['Read', 'Write', 'Edit', 'Bash', 'Glob', 'Grep'],
-    provider: 'claude',
-    opencode: {
-      model: 'opencode/gpt-5-nano',
-      hostname: '127.0.0.1',
-      port: 4096
-    }
+    provider: 'claude',          // or 'opencode'
   },
 
   providers: {
@@ -247,32 +165,24 @@ All settings live in `config.js`. Edit directly or use the setup wizard.
 }
 ```
 
+API keys are stored in `.env` (never committed to git).
+
 ---
 
 ## Messaging Platforms
 
 ### WhatsApp
 
-Uses QR code authentication. No bot token needed.
+Uses QR code authentication — no bot token needed.
 
-1. Enable in config or run the setup wizard
-2. Start the gateway
-3. Scan the QR code that appears in your terminal (WhatsApp > Settings > Linked Devices)
-4. Session saves to `auth_whatsapp/` — you only scan once
+1. Start the gateway: `maverick start`
+2. Scan the QR code (WhatsApp > Settings > Linked Devices)
+3. Session saves to `auth_whatsapp/` — you only scan once
 
 ### Telegram
 
-1. Message @BotFather on Telegram, send `/newbot`, copy the token
-2. Add the token to config:
-
-```javascript
-telegram: {
-  enabled: true,
-  token: 'YOUR_BOT_TOKEN',
-  allowedDMs: ['*'],
-}
-```
-
+1. Message [@BotFather](https://t.me/BotFather) on Telegram, send `/newbot`, copy the token
+2. Add the token to `.env`: `TELEGRAM_BOT_TOKEN=your-token`
 3. Start the gateway, then message your bot
 
 ### iMessage
@@ -289,28 +199,27 @@ Enable in config. Make sure Messages.app is open and signed in.
 
 ## Memory System
 
-Persistent memory stored at `~/maverick-agent/Memory/`.
+Persistent memory stored at `~/.maverick/Memory/`.
 
-```
-~/maverick-agent/Memory/
-  MEMORY.md              — long-term: preferences, people, decisions
-  YYYY-MM-DD.md          — daily logs
-  [topic].md             — topic-specific notes
-```
+| File | Purpose |
+|------|---------|
+| `MEMORY.md` | Long-term: preferences, people, decisions |
+| `YYYY-MM-DD.md` | Daily conversation logs |
+| `[topic].md` | Topic-specific notes |
 
 Memory is loaded at the start of each conversation. The assistant writes to memory when you ask it to remember something.
 
-Use the `/memory` command in chat to view or search memories.
+**Commands:** `/memory`, `/memory list`, `/memory search <query>`
 
 ---
 
 ## Scheduling and Reminders
 
-The assistant can schedule messages using cron tools.
+Natural language scheduling — no cron syntax required.
 
 - "Remind me in 30 minutes to check the oven" — one-time delay
-- "Every day at 9am, send me a standup reminder" — cron expression `0 9 * * *`
-- "Every weekday at 8am" — cron expression `0 8 * * 1-5`
+- "Every day at 9am, send me a standup reminder" — recurring cron
+- "Every weekday at 8am" — weekday-only schedule
 
 Jobs persist in `~/maverick-agent/Automations/Jobs/cron-jobs.json` and execute while the gateway is running.
 
@@ -318,75 +227,19 @@ Jobs persist in `~/maverick-agent/Automations/Jobs/cron-jobs.json` and execute w
 
 ## Integrations
 
-### GitHub
-
-Native GitHub integration using Personal Access Token.
-
-**Setup:**
-1. Go to GitHub Settings > Developer settings > Personal access tokens
-2. Create a token with permissions: `repo`, `workflow`, `read:org`
-3. Add to `.env`: `GITHUB_PAT=ghp_...`
-
-**Capabilities:** Repos, issues, PRs, commits, workflows, code search
-
-### Google Tasks
-
-Native Google Tasks for todo management.
-
-**Setup:**
-1. Create Google Cloud project, enable Tasks API
-2. Create OAuth2 credentials
-3. Add to `.env`:
-```
-GOOGLE_TASKS_CLIENT_ID=...
-GOOGLE_TASKS_CLIENT_SECRET=...
-GOOGLE_TASKS_REFRESH_TOKEN=...
-```
-
-### Google Calendar
-
-Native Google Calendar for event management.
-
-**Setup:** Same as Google Tasks but with Calendar API scope
-
-### Microsoft To Do
-
-Alternative to Google Tasks. Set `TODO_PROVIDER=microsoft` in `.env`.
-
-### Microsoft Outlook Calendar
-
-Alternative to Google Calendar. Set `CALENDAR_PROVIDER=microsoft` in `.env`.
-
-### Vercel
-
-Deploy and manage Vercel projects. Add `VERCEL_TOKEN=...` to `.env`.
-
-### Supabase
-
-Query Supabase databases. Add `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_KEY` to `.env`.
-
-### Brave Search
-
-Web, news, image, video search. Add `BRAVE_API_KEY=...` to `.env`.
-
-### Docker
-
-Manage containers, images, compose stacks. Requires Docker installed.
-
-### System Monitor
-
-CPU, memory, disk, network, processes. Built-in.
-
-### Voice (TTS/STT)
-
-Text-to-speech and speech-to-text with multiple providers:
-
-```bash
-TTS_PROVIDER=elevenlabs    # elevenlabs, fal, or replicate
-STT_PROVIDER=groq          # groq, fal, or replicate
-```
-
-Requires provider API keys in `.env`.
+| Integration | What it does | Setup |
+|-------------|-------------|-------|
+| **GitHub** | Repos, issues, PRs, commits, workflows, code search | `GITHUB_PAT=ghp_...` in `.env` |
+| **Google Tasks** | Todo management | OAuth2 credentials in `.env` |
+| **Google Calendar** | Event management | OAuth2 credentials in `.env` |
+| **Microsoft To Do** | Alternative to Google Tasks | `TODO_PROVIDER=microsoft` in `.env` |
+| **Microsoft Outlook** | Alternative to Google Calendar | `CALENDAR_PROVIDER=microsoft` in `.env` |
+| **Vercel** | Deploy and manage projects | `VERCEL_TOKEN=...` in `.env` |
+| **Supabase** | Query databases | `SUPABASE_URL`, `SUPABASE_ANON_KEY` in `.env` |
+| **Brave Search** | Web, news, image, video search | `BRAVE_API_KEY=...` in `.env` |
+| **Docker** | Manage containers, images, compose stacks | Requires Docker installed |
+| **System Monitor** | CPU, memory, disk, network, processes | Built-in |
+| **Voice (TTS/STT)** | Text-to-speech and speech-to-text | Provider API keys in `.env` |
 
 ---
 
@@ -395,12 +248,12 @@ Requires provider API keys in `.env`.
 ### CLI
 
 ```bash
-node cli.js              # interactive menu
-node cli.js chat         # terminal chat
-node cli.js start        # start gateway
-node cli.js setup        # setup wizard
-node cli.js config       # show config
-node cli.js help         # help
+maverick              # interactive menu
+maverick chat         # terminal chat
+maverick start        # start gateway
+maverick setup        # setup wizard
+maverick config       # show config
+maverick help         # help
 ```
 
 ### In Chat
@@ -419,21 +272,35 @@ node cli.js help         # help
 
 ---
 
+## Documentation
+
+| Section | What's Covered |
+|---------|----------------|
+| [Quick Install](#quick-install) | One-liner install, options, install layout |
+| [Getting Started](#getting-started) | First conversation in 2 minutes |
+| [Providers](#providers) | Claude SDK, Opencode, switching |
+| [CLI vs Messaging](#cli-vs-messaging) | Commands across interfaces |
+| [Configuration](#configuration) | config.js, .env, all options |
+| [Messaging Platforms](#messaging-platforms) | WhatsApp, Telegram, iMessage setup |
+| [Memory System](#memory-system) | Persistent memory, search |
+| [Scheduling](#scheduling-and-reminders) | Cron jobs, natural language |
+| [Integrations](#integrations) | GitHub, Google, Vercel, Supabase, etc. |
+| [Commands](#commands) | CLI and chat commands |
+| [Troubleshooting](#troubleshooting) | Common issues and fixes |
+
+---
+
 ## Troubleshooting
 
-**"ANTHROPIC_API_KEY not set"** — export the key in your shell or `.env` file.
-
-**"claude: command not found"** — Claude Code is not installed. Run `curl -fsSL https://claude.ai/install.sh | bash`.
-
-**"opencode: command not found"** — Opencode is not installed. Run `curl -fsSL https://opencode.ai/install | bash`.
-
-**WhatsApp QR not appearing** — delete `auth_whatsapp/` and restart.
-
-**Telegram bot not responding** — verify the token, make sure you sent `/start` to your bot, check `enabled: true`.
-
-**iMessage not working** — macOS only. Check that Messages.app is open, imsg is installed (`which imsg`), and accessibility permissions are granted.
-
-**Opencode server failing** — if port 4096 is already in use from a previous run, kill the old process: `kill $(lsof -ti :4096)`.
+| Problem | Solution |
+|---------|----------|
+| `ANTHROPIC_API_KEY not set` | Export in shell or set in `.env` |
+| `claude: command not found` | `npm install -g @anthropic-ai/claude-code` |
+| `opencode: command not found` | `curl -fsSL https://opencode.ai/install \| bash` |
+| WhatsApp QR not appearing | Delete `auth_whatsapp/` and restart |
+| Telegram bot not responding | Verify token, send `/start` to bot, check `enabled: true` |
+| iMessage not working | macOS only — check Messages.app is open, `which imsg`, accessibility permissions |
+| Opencode server failing | Kill old process: `kill $(lsof -ti :4096)` |
 
 ---
 
@@ -447,6 +314,7 @@ maverick-agent/
   cli.js                 CLI entry point (menu, terminal chat)
   gateway.js             gateway process (messaging platforms)
   Dockerfile             container build for remote deployment
+  docker-compose.yml     Docker Compose config
   adapters/
     base.js              base adapter class
     whatsapp.js          WhatsApp via Baileys
@@ -461,55 +329,38 @@ maverick-agent/
     opencode-provider.js Opencode provider
     index.js             provider registry
   tools/
-    cron.js              scheduling tools
-    gateway.js           gateway MCP tools
-    github.js            GitHub integration
-    google-tasks.js      Google Tasks
-    google-calendar.js   Google Calendar
-    microsoft-todo.js    Microsoft To Do
-    microsoft-calendar.js Microsoft Outlook Calendar
-    vercel.js            Vercel integration
-    supabase.js          Supabase integration
-    search.js            Brave Search
-    docker.js            Docker management
-    system.js            System monitoring
-    voice.js             TTS/STT
-    applescript.js       macOS automation
+    base/                core tools (cron, voice, system, etc.)
+    services/            integration tools (github, vercel, supabase, etc.)
+    tool-registry.js     tool registration
   commands/
     handler.js           slash command handlers
   sessions/
     manager.js           session tracking
   memory/
     manager.js           memory file management
-  Skills/                agent skills
-  Agents/                sub-agent definitions
-    architect-agent.md   system design
-    backend-dev.md       backend development
-    code-reviewer.md     code review
-    data-agent.md        data analysis
-    debug-agent.md       debugging
-    docs-writer.md       documentation
-    frontend-dev.md      frontend development
-    orchestrator-agent.md workflow coordination
-    planning-agent.md    planning
-    research-agent.md    research
-    security-auditor.md  security auditing
-    test-writer.md       test generation
-  Documents/             general documents
-  Development/           code projects
-  Downloads/             downloaded files
-  Media/                 images, audio, video
-  Projects/              active projects
-  Archive/               completed work
-  Temp/                  temporary files
-  Automations/           scheduled tasks
+  clients/
+    web/                 Next.js web client
+  file-system/
+    Agents/              sub-agent definitions (architect, dev, reviewer, etc.)
+    Skills/              agent skills (brainstorming, design, debugging, etc.)
+    Memory/              persistent memory files
+    Automations/         scheduled tasks and logs
+    Projects/            active projects
+    Documents/           general documents
 ```
 
 ---
 
 ## Contributing
 
-We welcome contributions! Here's how to get started:
+We welcome contributions!
+
+```bash
+git clone https://github.com/Justmalhar/maverick-agent.git
+cd maverick-agent
+npm install
+node cli.js            # start developing
+```
 
 1. Fork the repo
 2. Create a branch (`git checkout -b feat/my-feature`)
@@ -519,6 +370,15 @@ We welcome contributions! Here's how to get started:
 
 ---
 
+## Community
+
+- [GitHub Issues](https://github.com/Justmalhar/maverick-agent/issues) — bug reports and feature requests
+- [Pull Requests](https://github.com/Justmalhar/maverick-agent/pulls) — contributions welcome
+
+---
+
 ## License
 
-MIT
+MIT — see [LICENSE](https://github.com/Justmalhar/maverick-agent/blob/main/LICENSE).
+
+Built by [Malhar Ujawane](https://github.com/justmalhar).
