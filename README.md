@@ -47,6 +47,17 @@ Maverick Agent is a Node.js AI assistant that lives on your messaging platforms.
 - [Memory System](#memory-system)
 - [Scheduling and Reminders](#scheduling-and-reminders)
 - [Integrations](#integrations)
+  - [GitHub](#github)
+  - [Google Tasks](#google-tasks)
+  - [Google Calendar](#google-calendar)
+  - [Microsoft To Do](#microsoft-to-do)
+  - [Microsoft Outlook Calendar](#microsoft-outlook-calendar)
+  - [Vercel](#vercel)
+  - [Supabase](#supabase)
+  - [Brave Search](#brave-search)
+  - [Docker](#docker)
+  - [System Monitor](#system-monitor)
+  - [Voice (TTS/STT)](#voice-ttsstt)
 - [Commands](#commands)
 - [Documentation](#documentation)
 - [Troubleshooting](#troubleshooting)
@@ -227,19 +238,198 @@ Jobs persist in `~/maverick-agent/Automations/Jobs/cron-jobs.json` and execute w
 
 ## Integrations
 
-| Integration | What it does | Setup |
-|-------------|-------------|-------|
-| **GitHub** | Repos, issues, PRs, commits, workflows, code search | `GITHUB_PAT=ghp_...` in `.env` |
-| **Google Tasks** | Todo management | OAuth2 credentials in `.env` |
-| **Google Calendar** | Event management | OAuth2 credentials in `.env` |
-| **Microsoft To Do** | Alternative to Google Tasks | `TODO_PROVIDER=microsoft` in `.env` |
-| **Microsoft Outlook** | Alternative to Google Calendar | `CALENDAR_PROVIDER=microsoft` in `.env` |
-| **Vercel** | Deploy and manage projects | `VERCEL_TOKEN=...` in `.env` |
-| **Supabase** | Query databases | `SUPABASE_URL`, `SUPABASE_ANON_KEY` in `.env` |
-| **Brave Search** | Web, news, image, video search | `BRAVE_API_KEY=...` in `.env` |
-| **Docker** | Manage containers, images, compose stacks | Requires Docker installed |
-| **System Monitor** | CPU, memory, disk, network, processes | Built-in |
-| **Voice (TTS/STT)** | Text-to-speech and speech-to-text | Provider API keys in `.env` |
+### GitHub
+
+Native GitHub integration using Personal Access Token.
+
+**Setup:**
+1. Go to GitHub Settings > Developer settings > Personal access tokens
+2. Create a token with permissions: `repo`, `workflow`, `read:org`
+3. Add to `.env`:
+
+```
+GITHUB_PAT=ghp_...
+```
+
+**Capabilities:** Repos, issues, PRs, commits, workflows, code search.
+
+---
+
+### Google Tasks
+
+Native Google Tasks for todo management.
+
+**Setup:**
+1. Create a Google Cloud project and enable the Tasks API
+2. Create OAuth2 credentials
+3. Add to `.env`:
+
+```
+GOOGLE_TASKS_CLIENT_ID=your-client-id.apps.googleusercontent.com
+GOOGLE_TASKS_CLIENT_SECRET=your-client-secret
+GOOGLE_TASKS_REFRESH_TOKEN=your-refresh-token
+```
+
+---
+
+### Google Calendar
+
+Native Google Calendar for event management.
+
+**Setup:**
+1. Same as Google Tasks but with Calendar API scope enabled
+2. Add to `.env`:
+
+```
+GOOGLE_CALENDAR_CLIENT_ID=your-client-id.apps.googleusercontent.com
+GOOGLE_CALENDAR_CLIENT_SECRET=your-client-secret
+GOOGLE_CALENDAR_REFRESH_TOKEN=your-refresh-token
+```
+
+---
+
+### Microsoft To Do
+
+Alternative to Google Tasks.
+
+**Setup:**
+1. Create an Azure AD app registration
+2. Enable Microsoft To Do API permissions
+3. Add to `.env`:
+
+```
+TODO_PROVIDER=microsoft
+MICROSOFT_CLIENT_ID=your-client-id
+MICROSOFT_CLIENT_SECRET=your-client-secret
+MICROSOFT_REFRESH_TOKEN=your-refresh-token
+```
+
+---
+
+### Microsoft Outlook Calendar
+
+Alternative to Google Calendar.
+
+**Setup:**
+1. Same Azure AD app as Microsoft To Do, with Calendar API scope
+2. Add to `.env`:
+
+```
+CALENDAR_PROVIDER=microsoft
+MICROSOFT_CLIENT_ID=your-client-id
+MICROSOFT_CLIENT_SECRET=your-client-secret
+MICROSOFT_REFRESH_TOKEN=your-refresh-token
+```
+
+---
+
+### Vercel
+
+Deploy and manage Vercel projects.
+
+**Setup:**
+1. Go to [vercel.com/account/tokens](https://vercel.com/account/tokens)
+2. Create an API token
+3. Add to `.env`:
+
+```
+VERCEL_TOKEN=your-vercel-token
+```
+
+**Capabilities:** Deploy projects, list deployments, get project info.
+
+---
+
+### Supabase
+
+Query Supabase databases directly.
+
+**Setup:**
+1. Go to your Supabase project Settings > API
+2. Copy the project URL and keys
+3. Add to `.env`:
+
+```
+SUPABASE_URL=https://xxxx.supabase.co
+SUPABASE_ANON_KEY=your-anon-key
+SUPABASE_SERVICE_KEY=your-service-role-key
+```
+
+---
+
+### Brave Search
+
+Web, news, image, and video search.
+
+**Setup:**
+1. Go to [brave.com/search/api](https://brave.com/search/api/)
+2. Get an API key
+3. Add to `.env`:
+
+```
+BRAVE_API_KEY=your-brave-api-key
+```
+
+---
+
+### Docker
+
+Manage containers, images, and compose stacks.
+
+**Requirements:** Docker must be installed on the host machine.
+
+```bash
+# Verify Docker is available
+docker --version
+```
+
+No API key needed — the tool communicates with the local Docker daemon.
+
+---
+
+### System Monitor
+
+CPU, memory, disk, network, and process monitoring. Built-in, no setup required.
+
+---
+
+### Voice (TTS/STT)
+
+Text-to-speech and speech-to-text with multiple providers.
+
+**Supported providers:**
+
+| Provider | TTS | STT |
+|----------|-----|-----|
+| ElevenLabs | Yes | No |
+| Groq | No | Yes |
+| FAL | Yes | Yes |
+| Replicate | Yes | Yes |
+| OpenAI | Yes | Yes |
+| Deepgram | No | Yes |
+| Kokoro | Yes | No |
+
+**Setup:**
+1. Choose your providers in `.env`:
+
+```
+TTS_PROVIDER=elevenlabs    # elevenlabs, fal, replicate, openai, kokoro, deepgram
+STT_PROVIDER=groq          # groq, fal, replicate, openai, deepgram, kokoro
+```
+
+2. Add the corresponding API keys:
+
+```
+ELEVENLABS_API_KEY=your-elevenlabs-api-key
+ELEVENLABS_VOICE_ID=your-default-voice-id
+FAL_API_KEY=your-fal-api-key
+REPLICATE_API_TOKEN=your-replicate-token
+GROQ_API_KEY=your-groq-api-key
+OPENAI_API_KEY=your-openai-api-key
+DEEPGRAM_API_KEY=your-deepgram-api-key
+KOKORO_API_URL=http://localhost:8880
+KOKORO_ENABLED=true
+```
 
 ---
 
@@ -372,6 +562,7 @@ node cli.js            # start developing
 
 ## Community
 
+- [X / Twitter](https://x.com/justmalhar) — follow for updates
 - [GitHub Issues](https://github.com/Justmalhar/maverick-agent/issues) — bug reports and feature requests
 - [Pull Requests](https://github.com/Justmalhar/maverick-agent/pulls) — contributions welcome
 
@@ -381,4 +572,4 @@ node cli.js            # start developing
 
 MIT — see [LICENSE](https://github.com/Justmalhar/maverick-agent/blob/main/LICENSE).
 
-Built by [Malhar Ujawane](https://github.com/justmalhar).
+Built by [Malhar Ujawane](https://x.com/justmalhar).
