@@ -1,0 +1,29 @@
+{
+  "name": "maverick-agent",
+  "version": "1.0.0",
+  "description": "Maverick Agent - WhatsApp, Telegram, iMessage adapters with Claude agent runtime",
+  "type": "module",
+  "main": "gateway.js",
+  "bin": {
+    "maverick-agent": "./cli.js"
+  },
+  "scripts": {
+    "start": "node cli.js start",
+    "chat": "node cli.js chat",
+    "setup": "node cli.js setup",
+    "cli": "node cli.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/claude-agent-sdk": "^0.1.0",
+    "@opencode-ai/sdk": "latest",
+    "@whiskeysockets/baileys": "^6.7.16",
+    "dotenv": "^17.2.4",
+    "node-telegram-bot-api": "^0.66.0",
+    "oh-my-logo": "^0.4.0",
+    "pino": "^9.6.0",
+    "qrcode": "^1.5.4",
+    "qrcode-terminal": "^0.12.0",
+    "zod": "^3.24.0",
+    "ws": "^8.16.0"
+  }
+}

@@ -1,0 +1,14 @@
+services:
+  maverick:
+    build: .
+    env_file: .env
+    ports:
+      - "4096:4096"
+    volumes:
+      - wa-auth:/app/auth_whatsapp
+      - memory:/home/maverick/maverick-agent
+    restart: unless-stopped
+
+volumes:
+  wa-auth:
+  memory:
